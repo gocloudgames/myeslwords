@@ -7,7 +7,7 @@ import (
 )
 
 func GetAPIKey(headers http.Header) (string, error) {
-	authHeader := headers.Get("Authorizationss")
+	authHeader := headers.Get("Authorization")
 	if authHeader == "" {
 		return "", errors.New("authorization header missing")
 	}
