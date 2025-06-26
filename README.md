@@ -1,3 +1,4 @@
+![status](https://github.com/gocloudgames/myeslwords/actions/workflows/ci.yml/badge.svg)
 # 📘 Learn English Words as ESL
 
 ## Description
