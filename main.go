@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
@@ -10,11 +11,20 @@ func helloHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", helloHandler)
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", helloHandler)
 
-	port := ":8080"
-	fmt.Printf("Starting server at http://localhost%s\n", port)
-	if err := http.ListenAndServe(port, nil); err != nil {
+	server := &http.Server{
+		Addr:         ":8080",
+		Handler:      mux,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		IdleTimeout:  120 * time.Second,
+	}
+
+	fmt.Println("Starting server at http://localhost:8080")
+	if err := server.ListenAndServe(); err != nil {
 		fmt.Printf("Server failed: %s\n", err)
 	}
+
 }
