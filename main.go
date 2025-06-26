@@ -5,11 +5,6 @@ import (
 	"net/http"
 )
 
-func unused() {
-	// this function does nothing
-	// and is called nowhere
-}
-
 func helloHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "hello, world!")
 }
