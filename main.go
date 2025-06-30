@@ -32,10 +32,22 @@ func Monitor(ctx context.Context) {
 		}
 	}
 }*/
+func createUserHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	// In a real app, you'd parse and validate request body here
+
+	w.WriteHeader(http.StatusCreated) // 201 Created
+//	w.Write([]byte(`{"message": "User created"}`))
+}
 
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", helloHandler)
+	mux.HandleFunc("/v1/users", createUserHandler)
 
 	server := &http.Server{
 		Addr:         ":8080",
