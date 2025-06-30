@@ -7,7 +7,7 @@ import (
 )
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "hello, world!")
+	fmt.Fprintln(w, "Welcome to Notely\nhello, world!")
 }
 
 /*func main() {
